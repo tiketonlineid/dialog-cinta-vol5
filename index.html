@@ -401,7 +401,7 @@ Tersisa 9 Tiket
 
 </div>
 
-<button class="buy" onclick="location.href='from.html'">
+<button class="buy" onclick="checkout()">
 LANJUTKAN PEMBELIAN
 </button>
 
@@ -549,6 +549,38 @@ x.innerHTML=angka;
 
 }
 
+function checkout(){
+
+let festival = parseInt(document.getElementById('festival').innerText);
+let vip = parseInt(document.getElementById('vip').innerText);
+
+if(festival===0 && vip===0){
+alert('Pilih minimal 1 tiket');
+return;
+}
+
+let jenis = [];
+let total = 0;
+let jumlah = festival + vip;
+
+if(festival>0){
+jenis.push('Festival x'+festival);
+total += festival * 85000;
+}
+
+if(vip>0){
+jenis.push('VIP x'+vip);
+total += vip * 110000;
+}
+
+localStorage.setItem('jenisTiket', jenis.join(', '));
+localStorage.setItem('jumlahTiket', jumlah);
+localStorage.setItem('totalPembayaran', total);
+
+window.location.href='from.html';
+
+}
+  
 </script>
 
 </body>
